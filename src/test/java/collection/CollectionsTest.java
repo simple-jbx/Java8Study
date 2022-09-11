@@ -58,10 +58,5 @@ public class CollectionsTest {
         Collections.copy(newList, list);
         System.out.println(newList);
         System.out.println(list);
-        Collections.synchronizedSet();
-        Collections.synchronizedNavigableMap();
-        Collections.synchronizedNavigableSet();
-        Collections.synchronizedSortedMap();
-        Collections.synchronizedSortedSet();
     }
 }
