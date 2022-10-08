@@ -92,9 +92,47 @@ public class BufferedTest {
             // outputStream.close();
             // inputStream.close();
         }
+    }
 
+    /**
+     * 使用BufferedReader和BufferedWriter实现文本文件的复制
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/8 23:07
+     */
+    @Test
+    public void test02() {
+        BufferedReader br = null;
+        BufferedWriter bw = null;
 
+        try {
+            br = new BufferedReader(new FileReader(new File("test.txt")));
+            bw = new BufferedWriter(new FileWriter(new File("out.txt")));
 
+            char[] cbuff = new char[1024];
+            int len;
+            while ((len = br.read(cbuff)) != -1) {
+                bw.write(cbuff, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            if(bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

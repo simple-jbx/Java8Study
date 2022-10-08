@@ -1,2 +1,19 @@
 simple00 0
 simple01 1
+simple00 0
+simple01 1simple00 0
+          simple01 1simple00 0
+                    simple01 1simple00 0
+                              simple01 1simple00 0
+                                        simple01 1simple00 0
+                                                  simple01 1simple00 0
+                                                            simple01 1simple00 0
+                                                                      simple01 1simple00 0
+字符流
+                                                                                simple01 1simple00 0
+                                                                                          simple01 1simple00 0
+字节流                                                                                                    simple01 1simple00 0
+                                                                                                              simple01 1simple00 0
+                                                                                                                        simple01 1simple00 0
+转换流                                                                                                                                  simple01 1simple00 0
+                                                                                                                                            simple01 1
