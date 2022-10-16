@@ -1,7 +1,7 @@
 package stream;
 
 import org.junit.Test;
-import pojo.User;
+import tech.snnukf.java8study.pojo.User;
 
 import java.util.*;
 import java.util.stream.Collectors;

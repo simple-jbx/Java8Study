@@ -1,6 +1,6 @@
-package pojo;
+package tech.snnukf.java8study.pojo;
 
-import enums.SexEnum;
+import tech.snnukf.java8study.enums.SexEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,7 @@
 package generic;
 
 import org.junit.Test;
+import tech.snnukf.java8study.generic.*;
 
 import java.util.ArrayList;
 import java.util.List;

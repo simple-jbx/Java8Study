@@ -1,12 +1,9 @@
 package optional;
 
 import org.junit.Test;
-import pojo.Boy;
-import pojo.Girl;
+import tech.snnukf.java8study.pojo.Girl;
 
-import java.nio.file.OpenOption;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * @className: OptionalTest

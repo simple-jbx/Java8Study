@@ -1,4 +1,4 @@
-package pojo;
+package tech.snnukf.java8study.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

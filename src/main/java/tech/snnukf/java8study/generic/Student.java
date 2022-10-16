@@ -1,4 +1,4 @@
-package generic;
+package tech.snnukf.java8study.generic;
 
 /**
  * @className: Student

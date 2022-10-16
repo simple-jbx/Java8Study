@@ -1,4 +1,4 @@
-package enums;
+package tech.snnukf.java8study.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
