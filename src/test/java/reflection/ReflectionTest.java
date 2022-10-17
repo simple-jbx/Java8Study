@@ -106,26 +106,6 @@ public class ReflectionTest {
         Class clazz = Person.class;
 
         // 获取当前运行时类及其所有父类中声明为public权限的方法
-        // public boolean tech.snnukf.java8study.pojo.Person.equals(java.lang.Object)
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.toString()
-        // public int tech.snnukf.java8study.pojo.Person.hashCode()
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.getName()
-        // public void tech.snnukf.java8study.pojo.Person.setName(java.lang.String)
-        // public void tech.snnukf.java8study.pojo.Person.show()
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.getNickName()
-        // public int tech.snnukf.java8study.pojo.Person.getAge()
-        // public void tech.snnukf.java8study.pojo.Person.setAge(int)
-        // public void tech.snnukf.java8study.pojo.Person.setNickName(java.lang.String)
-        // public void tech.snnukf.java8study.pojo.Feature.setSex(int)
-        // public int tech.snnukf.java8study.pojo.Feature.getSex()
-        // public int tech.snnukf.java8study.pojo.Feature.getWeight()
-        // public void tech.snnukf.java8study.pojo.Feature.setWeight(int)
-        // public final void java.lang.Object.wait() throws java.lang.InterruptedException
-        // public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException
-        // public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException
-        // public final native java.lang.Class java.lang.Object.getClass()
-        // public final native void java.lang.Object.notify()
-        // public final native void java.lang.Object.notifyAll()
         Method[] methods = clazz.getMethods();
         for (Method method : methods) {
             System.out.println(method);
@@ -133,18 +113,6 @@ public class ReflectionTest {
 
         System.out.println("**********************");
         // 获取当前运行时类所有方法 不包括父类方法
-        // public boolean tech.snnukf.java8study.pojo.Person.equals(java.lang.Object)
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.toString()
-        // public int tech.snnukf.java8study.pojo.Person.hashCode()
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.getName()
-        // public void tech.snnukf.java8study.pojo.Person.setName(java.lang.String)
-        // public void tech.snnukf.java8study.pojo.Person.show()
-        // private void tech.snnukf.java8study.pojo.Person.showNation(java.lang.String)
-        // protected boolean tech.snnukf.java8study.pojo.Person.canEqual(java.lang.Object)
-        // public java.lang.String tech.snnukf.java8study.pojo.Person.getNickName()
-        // public int tech.snnukf.java8study.pojo.Person.getAge()
-        // public void tech.snnukf.java8study.pojo.Person.setAge(int)
-        // public void tech.snnukf.java8study.pojo.Person.setNickName(java.lang.String)
         Method[] decMethods = clazz.getDeclaredMethods();
         for (Method method : decMethods) {
             Annotation[] annotations = method.getAnnotations();
@@ -163,14 +131,13 @@ public class ReflectionTest {
             Class[] parameterTypes = method.getParameterTypes();
             if(!(parameterTypes == null || parameterTypes.length == 0)) {
                 System.out.print("args ");
-                for (int i = 0; i < parameterTypes.length - 1; i++) {
+                for (int i = 0; i < parameterTypes.length; i++) {
                     if(i == parameterTypes.length - 1) {
                         System.out.print(parameterTypes[i].getName());
                         break;
                     }
                     System.out.print(parameterTypes[i].getName() + ",");
                 }
-                System.out.print(parameterTypes[parameterTypes.length - 1].getName() + ",");
             }
             System.out.print(") ");
             //抛出的异常
@@ -228,6 +195,133 @@ public class ReflectionTest {
      */
     @Test
     public void test06() {
-        
+        Class clazz = Person.class;
+        Class superClass = clazz.getSuperclass();
+        Type genericSuperclass = clazz.getGenericSuperclass();
+
+        System.out.println(superClass);
+        System.out.println(genericSuperclass);
+    }
+
+    /**
+     * description: 获取运行时类实现的接口
+     *
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:07
+     */
+    @Test
+    public void test07() {
+        Class clazz = Person.class;
+        Class superClass = clazz.getSuperclass();
+        Class[] interfaces = clazz.getInterfaces();
+        Class[] interfaces1 = superClass.getInterfaces();
+
+        Type[] genericInterfaces = clazz.getGenericInterfaces();
+
+        Arrays.stream(interfaces).forEach(System.out::println);
+        System.out.println();
+        Arrays.stream(interfaces1).forEach(System.out::println);
+        System.out.println();
+        Arrays.stream(genericInterfaces).forEach(System.out::println);
+    }
+
+    /**
+     * description: 获取运行时类所在的包
+     *
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:16
+     */
+    @Test
+    public void test08() {
+        Class clazz = Person.class;
+        Package pkg = clazz.getPackage();
+
+        System.out.println(pkg);
+    }
+
+    /**
+     * description: 获取运行时类声明的注解
+     *
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:16
+     */
+    @Test
+    public void test09() {
+        Class clazz = Person.class;
+        Annotation[] annotations = clazz.getAnnotations();
+        Arrays.stream(annotations).forEach(System.out::println);
+    }
+
+    /**
+     * description: 调用运行时类指定的结构：属性
+     *
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:21
+     */
+    @Test
+    public void test10() throws InstantiationException, IllegalAccessException, NoSuchFieldException {
+        Class clazz = Person.class;
+        Person person = (Person) clazz.newInstance();
+        //获取父类及本类public的属性
+        Field[] fields = clazz.getFields();
+        Arrays.stream(fields).forEach(System.out::println);
+        System.out.println();
+        //获取本类的所有属性
+        Field[] decFileds = clazz.getDeclaredFields();
+        Arrays.stream(decFileds).forEach(System.out::println);
+        System.out.println();
+        Field id = clazz.getDeclaredField("id");
+        id.setAccessible(true);
+        id.set(person, 1001);
+
+        int pId = (int) id.get(person);
+        System.out.println(pId);
+
+    }
+
+    /**
+     * description: 调用运行时类指定的结构：方法
+     * 较为重要
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:21
+     */
+    @Test
+    public void test11() throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        Class clazz = Person.class;
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        Arrays.stream(declaredMethods).forEach(System.out::println);
+        System.out.println();
+        Person person = (Person) clazz.newInstance();
+        Method showNation = clazz.getDeclaredMethod("showNation", String.class);
+        showNation.setAccessible(true);
+        showNation.invoke(person, "China");
+        System.out.println();
+
+        Method showPreMess = clazz.getDeclaredMethod("showPreMess");
+        Object invoke = showPreMess.invoke(person);
+        System.out.println(invoke);
+    }
+
+    /**
+     * description: 调用运行时类指定的结构：构造器
+     *
+     * @param:
+     * @return: void
+     * @author: simple.jbx
+     * @date: 2022/10/17 23:21
+     */
+    @Test
+    public void test12() {
+
     }
 }

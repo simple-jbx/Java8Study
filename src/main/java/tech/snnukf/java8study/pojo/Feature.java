@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
- * description: //TODO... Description
+ * description:
  *
  * @className: Feature
  * @author: simple.jbx
@@ -14,7 +16,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Feature {
+public class Feature<T> implements Serializable {
     public int weight;
     private int sex;
+    private T mark;
 }

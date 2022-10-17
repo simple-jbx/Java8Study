@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import tech.snnukf.java8study.inte.Action;
+
+import javax.annotation.Resource;
+import javax.annotation.processing.SupportedAnnotationTypes;
 
 /**
  * //TODO... Description
@@ -16,10 +20,16 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person extends Feature{
+@Resource
+public class Person extends Feature implements Action {
+    private int id;
     private String name;
     private int age;
     public String nickName;
+
+    public static void showPreMess() {
+        System.out.println("I'm not a robot");
+    }
 
     public void show() {
         System.out.println("my name is " + name);
@@ -36,5 +46,20 @@ public class Person extends Feature{
 
     public void showAge() throws NullPointerException {
         System.out.println(this.age);
+    }
+
+    @Override
+    public void sleep() {
+
+    }
+
+    @Override
+    public void eat(String... foods) {
+
+    }
+
+    @Override
+    public void run() {
+
     }
 }
