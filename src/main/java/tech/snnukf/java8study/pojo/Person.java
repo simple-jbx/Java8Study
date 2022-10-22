@@ -35,6 +35,19 @@ public class Person extends Feature implements Action {
         System.out.println("my name is " + name);
     }
 
+    private Person(String name) {
+        this.name = name;
+    }
+
+    public Person(int id) {
+        this.id = id;
+    }
+
+    public Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     private Person(String name, int age) {
         this.name = name;
         this.age = age;

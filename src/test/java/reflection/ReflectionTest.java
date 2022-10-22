@@ -321,7 +321,15 @@ public class ReflectionTest {
      * @date: 2022/10/17 23:21
      */
     @Test
-    public void test12() {
+    public void test12() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class clazz = Person.class;
 
+        //1. 获取指定构造器
+        Constructor constructor = clazz.getDeclaredConstructor(String.class);
+        //2. 保证此构造器可访问
+        constructor.setAccessible(true);
+        //3. 调用构造器创建运行时类的对象
+        Person person = (Person) constructor.newInstance("simple");
+        System.out.println(person);
     }
 }
