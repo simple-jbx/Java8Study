@@ -8,9 +8,15 @@ import tech.snnukf.java8study.inte.Action;
 
 import javax.annotation.Resource;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import java.io.Serializable;
 
 /**
- * //TODO... Description
+ * Person类需要
+ * 1.实现Serializable/Externalizable接口
+ * 2.提供一个全局常量
+ * 3.除了当前类需要实现Serializable接口外，
+ * 还必须保证其内部所有属性也实现了序列化接口
+ * 才能被序列化
  *
  * @className: Person
  * @author: simple.jbx
@@ -21,10 +27,16 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 @AllArgsConstructor
 @NoArgsConstructor
 @Resource
-public class Person extends Feature implements Action {
+public class Person implements Serializable {
+
+    public static final long serialVersionUID = 123456L;
+
     private int id;
+
     private String name;
+
     private int age;
+
     public String nickName;
 
     public static void showPreMess() {
@@ -59,20 +71,5 @@ public class Person extends Feature implements Action {
 
     public void showAge() throws NullPointerException {
         System.out.println(this.age);
-    }
-
-    @Override
-    public void sleep() {
-
-    }
-
-    @Override
-    public void eat(String... foods) {
-
-    }
-
-    @Override
-    public void run() {
-
     }
 }
